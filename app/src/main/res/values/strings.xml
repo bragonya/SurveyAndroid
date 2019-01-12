@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">SurveyApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="survey_chooser_name">Tus Encuestas</string>
+    <string name="survey_screen_title">Llena tu encuesta</string>
+    <string name="title_activity_login">Autenticacion</string>
+    <string name="organization_screen_title">Tus organizaciones</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">ID</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Ingresa</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">La contraseña es muy corta</string>
+    <string name="error_incorrect_password">La contraseña es incorrecta</string>
+    <string name="error_field_required">El campo es requerido</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_organization_screen">OrganizationScreen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="error_internet_connection">Necesitas internet para poder entrar al sistema</string>
+</resources>

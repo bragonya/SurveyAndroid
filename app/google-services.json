@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "792353618616",
+    "firebase_url": "https://bdsurvey-4d97c.firebaseio.com",
+    "project_id": "bdsurvey-4d97c",
+    "storage_bucket": "bdsurvey-4d97c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792353618616:android:aea38bb33594e172",
+        "android_client_info": {
+          "package_name": "com.apps.brayan.surveyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792353618616-i0ian88qa40m4v14toup2uma99nfr84v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf5MptVLl2O0ZwiApv83Z0bwCHlsxZbH0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
