@@ -24,6 +24,10 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
+import android.os.Handler
+import android.support.annotation.LayoutRes
+import android.support.constraint.ConstraintSet
+import android.support.transition.TransitionManager
 import android.util.Log
 import android.widget.Toast
 import com.apps.brayan.surveyapp.coreApp.NetworkManager
@@ -44,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
     var usersDomain = "https://bdsurvey-4d97c.firebaseio.com/usuarios/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_login_start_scene)
         // Set up the login form.
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -55,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
         })
 
         sign_in_button.setOnClickListener { attemptLogin() }
+        Handler().postDelayed({updateConstraints(R.layout.activity_login)},1000)
     }
 
 
@@ -190,5 +195,13 @@ class LoginActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this,getString(R.string.error_internet_connection),Toast.LENGTH_SHORT).show()
         }
+    }
+
+
+    fun updateConstraints(@LayoutRes id: Int) {
+        val newConstraintSet = ConstraintSet()
+        newConstraintSet.clone(this, id)
+        newConstraintSet.applyTo(root)
+        TransitionManager.beginDelayedTransition(root)
     }
 }
