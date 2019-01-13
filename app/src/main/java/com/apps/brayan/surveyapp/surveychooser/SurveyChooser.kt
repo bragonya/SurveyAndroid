@@ -6,25 +6,29 @@ import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.SurveyScreen
 import com.apps.brayan.surveyapp.coreApp.SurveyConstants
+import com.apps.brayan.surveyapp.coreApp.fallback.FallbackCase
+import com.apps.brayan.surveyapp.coreApp.fallback.FallbackManager
 import com.apps.brayan.surveyapp.models.Survey
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_survey_chooser.*
-import kotlinx.android.synthetic.main.org_holder.view.*
 
 class SurveyChooser : AppCompatActivity(), SCClick {
 
     lateinit var model:SCViewModel
     lateinit var adapter: SCAdapter
+    lateinit var fallbackManager: FallbackManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_chooser)
         collapsing_toolbar.post { collapsing_toolbar.requestLayout() }
-        val organizationName:String = intent.getStringExtra(SurveyConstants.KEY_ORG)
+        fallbackManager = FallbackManager()
+        val organizationName:String = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
         setupHeader(intent.getStringExtra(SurveyConstants.IMG_ORG))
         model = ViewModelProviders.of(this).get(SCViewModel::class.java)
         setupRecyclerView()
@@ -52,9 +56,31 @@ class SurveyChooser : AppCompatActivity(), SCClick {
 
     fun showNewDataSet(list: ArrayList<Survey>?){
         if(list!=null){
+            if(list.size == 0){
+                showEmptyError()
+                return
+            }
             adapter.replaceItems(list)
             adapter.notifyDataSetChanged()
+        }else{
+            showGenericError()
         }
+    }
+
+    fun detachFragment(){
+        fallbackManager.detachCurrentFallback()
+    }
+
+    fun showGenericError(){
+        fallbackManager.injectFallback(FallbackCase.GENERIC_ERROR,getFallbackContainter())
+    }
+
+    fun showEmptyError(){
+        fallbackManager.injectFallback(FallbackCase.EMPTY_ERROR,getFallbackContainter())
+    }
+
+    fun getFallbackContainter():ConstraintLayout{
+        return  recyclerContainer
     }
 
     override fun onClick(item: Survey) {

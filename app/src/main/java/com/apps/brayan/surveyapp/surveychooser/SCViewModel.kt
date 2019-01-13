@@ -23,5 +23,4 @@ class SCViewModel : ViewModel() {
         repository.fetchSurveys(surveyList,organizationName,context)
     }
 
-
 }
