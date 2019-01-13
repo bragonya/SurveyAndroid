@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.SurveyScreen
 import com.apps.brayan.surveyapp.coreApp.SurveyConstants
