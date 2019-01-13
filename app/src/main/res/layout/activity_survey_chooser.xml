@@ -33,6 +33,11 @@
                 android:src="@mipmap/surveywall"
                 tools:ignore="ContentDescription"/>
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/dark_gradient"/>
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbarOrg"
                 android:layout_width="match_parent"

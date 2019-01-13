@@ -3,7 +3,7 @@
 xmlns:card_view="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-card_view:cardBackgroundColor="#fff"
+card_view:cardBackgroundColor="@color/colorPrimary"
 card_view:cardCornerRadius="10dp"
 card_view:cardElevation="5dp"
 card_view:cardUseCompatPadding="true"
@@ -18,6 +18,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="180dp"
+            android:layout_margin="@dimen/margin_images_holder"
             android:src="@mipmap/surveywall"
             android:scaleType="centerCrop"
             android:id="@+id/imageOrgHolder"
@@ -29,7 +30,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
             android:layout_margin="8dp"
             android:textSize="32sp"
             android:text="Nombre Organizacion"
-            android:textColor="@color/colorChooserHolderName"
+            android:textColor="@color/white"
             android:id="@+id/orgName"/>
 </LinearLayout>
 
