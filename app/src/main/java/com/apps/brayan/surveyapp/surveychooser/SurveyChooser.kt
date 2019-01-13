@@ -12,9 +12,12 @@ import android.widget.Toast
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.SurveyScreen
 import com.apps.brayan.surveyapp.coreApp.SurveyConstants
+import com.apps.brayan.surveyapp.coreApp.application.MasterApp
 import com.apps.brayan.surveyapp.coreApp.fallback.FallbackCase
 import com.apps.brayan.surveyapp.coreApp.fallback.FallbackManager
 import com.apps.brayan.surveyapp.models.Survey
+import com.apps.brayan.surveyapp.surveychooser.di.SCModule
+import com.apps.brayan.surveyapp.viewmodel.SurveyViewModelFactory
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_survey_chooser.*
 
@@ -23,10 +26,11 @@ class SurveyChooser : AppCompatActivity(), SCClick {
     lateinit var model:SCViewModel
     lateinit var adapter: SCAdapter
     lateinit var fallbackManager: FallbackManager
-
+    val component by lazy { (application as MasterApp).component.plus(SCModule()) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_chooser)
+        component.inject(this)
         collapsing_toolbar.post { collapsing_toolbar.requestLayout() }
         fallbackManager = FallbackManager()
         val organizationName:String = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""

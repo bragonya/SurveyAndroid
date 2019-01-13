@@ -12,7 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
 
-class SurveyRepository() {
+class SurveyRepository(var firebaseDatabase: FirebaseDatabase) {
     var orgDetailDomain = "https://bdsurvey-4d97c.firebaseio.com/proyectos/{organization}"
     var surveysDomain = orgDetailDomain + "/encuestas"
 
@@ -20,7 +20,7 @@ class SurveyRepository() {
     fun fetchSurveys(liveData:MutableLiveData<ArrayList<Survey>>, organizationName:String,context: Context){
         if(NetworkManager.isNetworkAvailable(context)) {
             val finalUrl = surveysDomain.replace("{organization}", organizationName)
-            val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(finalUrl)
+            val myRef = firebaseDatabase.getReferenceFromUrl(finalUrl)
             val surveyListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val listSurveys = ArrayList<Survey>()
@@ -49,7 +49,7 @@ class SurveyRepository() {
         Handler().post {
             if (NetworkManager.isNetworkAvailable(context)) {
                 val finalUrl = orgDetailDomain.replace("{organization}", organizationName)
-                val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(finalUrl)
+                val myRef = firebaseDatabase.getReferenceFromUrl(finalUrl)
                 val surveyListener = object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         var detail: OrgDetail? = null

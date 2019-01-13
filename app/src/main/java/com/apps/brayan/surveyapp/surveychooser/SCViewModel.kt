@@ -6,12 +6,14 @@ import android.arch.lifecycle.ViewModel
 import android.content.Context
 import com.apps.brayan.surveyapp.SurveyRepository
 import com.apps.brayan.surveyapp.models.Survey
+import com.google.firebase.database.FirebaseDatabase
+import javax.inject.Inject
 
 class SCViewModel : ViewModel() {
     private var repository:SurveyRepository
     private var surveyList:MutableLiveData<ArrayList<Survey>>
     init {
-        repository = SurveyRepository()
+        repository = SurveyRepository(FirebaseDatabase.getInstance())
         surveyList = MutableLiveData()
     }
 
