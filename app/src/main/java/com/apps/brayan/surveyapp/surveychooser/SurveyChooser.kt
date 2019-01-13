@@ -32,7 +32,11 @@ class SurveyChooser : AppCompatActivity(), SCClick {
         setupHeader(intent.getStringExtra(SurveyConstants.IMG_ORG))
         model = ViewModelProviders.of(this).get(SCViewModel::class.java)
         setupRecyclerView()
-        fetchData(organizationName)
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        fetchData(intent.getStringExtra(SurveyConstants.KEY_ORG) ?: "")
     }
 
     fun setupHeader(img:String?){
@@ -67,7 +71,7 @@ class SurveyChooser : AppCompatActivity(), SCClick {
         }
     }
 
-    fun detachFragment(){
+    fun detachFallback(){
         fallbackManager.detachCurrentFallback()
     }
 
