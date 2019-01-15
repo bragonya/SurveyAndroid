@@ -1,6 +1,7 @@
 package com.apps.brayan.surveyapp.organizationscreen
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Build
@@ -25,10 +26,15 @@ import kotlinx.android.synthetic.main.content_organization_screen.*
 import kotlinx.android.synthetic.main.nav_header_organization_screen.*
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
+import com.apps.brayan.surveyapp.api.NetworkLayerModule
+import com.apps.brayan.surveyapp.firebase.database.FirebaseModule
+import com.apps.brayan.surveyapp.viewmodel.DaggerViewModelComponent
+import javax.inject.Inject
 
 
 class OrganizationScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OrgClick {
-
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var adapter: OrgAdapter
     lateinit var model:OrgViewModel
 
@@ -36,8 +42,8 @@ class OrganizationScreen : AppCompatActivity(), NavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_organization_screen)
         setSupportActionBar(toolbar)
-
-        model = ViewModelProviders.of(this).get(OrgViewModel::class.java)
+        DaggerViewModelComponent.builder().networkLayerModule(NetworkLayerModule()).firebaseModule(FirebaseModule()).build().inject(this)
+        model = ViewModelProviders.of(this,viewModelFactory).get(OrgViewModel::class.java)
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)

@@ -9,19 +9,15 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.SurveyScreen
 import com.apps.brayan.surveyapp.api.NetworkLayerModule
 import com.apps.brayan.surveyapp.coreApp.SurveyConstants
-import com.apps.brayan.surveyapp.coreApp.application.MasterApp
 import com.apps.brayan.surveyapp.coreApp.fallback.FallbackCase
 import com.apps.brayan.surveyapp.coreApp.fallback.FallbackManager
 import com.apps.brayan.surveyapp.firebase.database.FirebaseModule
 import com.apps.brayan.surveyapp.models.Survey
-import com.apps.brayan.surveyapp.surveychooser.di.DaggerSCComponent
-import com.apps.brayan.surveyapp.surveychooser.di.SCModule
-import com.apps.brayan.surveyapp.viewmodel.SurveyViewModelFactory
+import com.apps.brayan.surveyapp.viewmodel.DaggerViewModelComponent
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_survey_chooser.*
 import javax.inject.Inject
@@ -35,7 +31,7 @@ class SurveyChooser : AppCompatActivity(), SCClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_chooser)
-        DaggerSCComponent.builder().networkLayerModule(NetworkLayerModule()).firebaseModule(FirebaseModule()).build().inject(this)
+        DaggerViewModelComponent.builder().networkLayerModule(NetworkLayerModule()).firebaseModule(FirebaseModule()).build().inject(this)
         collapsing_toolbar.post { collapsing_toolbar.requestLayout() }
         fallbackManager = FallbackManager()
         val organizationName:String = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
