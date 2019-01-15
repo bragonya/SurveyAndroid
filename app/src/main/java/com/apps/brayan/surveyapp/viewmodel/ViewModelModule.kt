@@ -2,6 +2,7 @@ package com.apps.brayan.surveyapp.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.content.Context
 import com.apps.brayan.surveyapp.SurveyRepository
 import com.apps.brayan.surveyapp.api.NetworkLayerModule
 import com.apps.brayan.surveyapp.firebase.database.FirebaseModule

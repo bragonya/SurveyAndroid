@@ -4,7 +4,9 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.Context
+import android.util.Log
 import com.apps.brayan.surveyapp.SurveyRepository
+import com.apps.brayan.surveyapp.coreApp.application.MasterApp
 import com.apps.brayan.surveyapp.models.OrgDetail
 import com.google.firebase.database.FirebaseDatabase
 import javax.inject.Inject
