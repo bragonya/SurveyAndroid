@@ -3,7 +3,7 @@ package com.apps.brayan.surveyapp.coreApp.application
 import android.app.Application
 import com.apps.brayan.surveyapp.coreApp.application.di.AppComponent
 import com.apps.brayan.surveyapp.coreApp.application.di.AppModule
-import com.apps.brayan.surveyapp.coreApp.dependencyinjection.DaggerAppComponent
+import com.apps.brayan.surveyapp.coreApp.application.di.DaggerAppComponent
 
 class MasterApp: Application() {
     val component: AppComponent by lazy {

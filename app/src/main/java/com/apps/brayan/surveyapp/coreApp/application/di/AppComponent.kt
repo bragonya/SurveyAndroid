@@ -10,5 +10,4 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AppModule::class))
 interface AppComponent {
     fun inject(app: MasterApp)
-    fun plus(homeModule: SCModule): SCComponent
 }

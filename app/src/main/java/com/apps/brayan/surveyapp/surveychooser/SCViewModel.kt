@@ -9,11 +9,9 @@ import com.apps.brayan.surveyapp.models.Survey
 import com.google.firebase.database.FirebaseDatabase
 import javax.inject.Inject
 
-class SCViewModel : ViewModel() {
-    private var repository:SurveyRepository
+class SCViewModel @Inject constructor(var repository:SurveyRepository): ViewModel() {
     private var surveyList:MutableLiveData<ArrayList<Survey>>
     init {
-        repository = SurveyRepository(FirebaseDatabase.getInstance())
         surveyList = MutableLiveData()
     }
 
