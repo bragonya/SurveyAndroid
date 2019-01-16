@@ -3,10 +3,11 @@ package com.apps.brayan.surveyapp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.apps.brayan.surveyapp.coreApp.NetworkManager
-import com.apps.brayan.surveyapp.coreApp.SessionManager
+import com.apps.brayan.surveyapp.coreapp.NetworkManager
+import com.apps.brayan.surveyapp.coreapp.SessionManager
+import com.apps.brayan.surveyapp.login.LoginActivity
 import com.apps.brayan.surveyapp.models.User
-import com.apps.brayan.surveyapp.organizationscreen.OrganizationScreen
+import com.apps.brayan.surveyapp.organizationscreen.OrganizationActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -69,7 +70,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun goToOrganizationScreen(){
-        val intent = Intent(applicationContext, OrganizationScreen::class.java)
+        val intent = Intent(applicationContext, OrganizationActivity::class.java)
         startActivity(intent)
         finish()
     }

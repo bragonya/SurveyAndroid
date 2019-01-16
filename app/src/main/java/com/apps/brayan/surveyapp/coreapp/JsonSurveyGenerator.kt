@@ -1,9 +1,9 @@
-package com.apps.brayan.surveyapp.coreApp
+package com.apps.brayan.surveyapp.coreapp
 
 class JsonSurveyGenerator{
     companion object {
         fun generatevalidJson(validJson:String):String{
-            return "var json = "+validJson+";"
+            return "var json = $validJson;"
         }
     }
 }

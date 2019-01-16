@@ -9,6 +9,6 @@ class SCHolder(itemView: View?, var listener:SCClick) : RecyclerView.ViewHolder(
 
     fun bind(position: Int, item: Survey) {
         itemView.surveyName.text = item.name
-        itemView.setOnClickListener({ listener.onClick(item) })
+        itemView.setOnClickListener { listener.onClick(item) }
     }
 }
