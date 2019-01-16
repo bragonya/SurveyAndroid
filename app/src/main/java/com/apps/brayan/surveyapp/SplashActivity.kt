@@ -3,8 +3,8 @@ package com.apps.brayan.surveyapp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.apps.brayan.surveyapp.coreApp.NetworkManager
-import com.apps.brayan.surveyapp.coreApp.SessionManager
+import com.apps.brayan.surveyapp.coreapp.NetworkManager
+import com.apps.brayan.surveyapp.coreapp.SessionManager
 import com.apps.brayan.surveyapp.login.LoginActivity
 import com.apps.brayan.surveyapp.models.User
 import com.apps.brayan.surveyapp.organizationscreen.OrganizationActivity

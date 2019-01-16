@@ -8,8 +8,8 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
-import com.apps.brayan.surveyapp.coreApp.SurveyConstants
-import com.apps.brayan.surveyapp.coreApp.SurveyManagerFile
+import com.apps.brayan.surveyapp.coreapp.SurveyConstants
+import com.apps.brayan.surveyapp.coreapp.SurveyManagerFile
 import com.apps.brayan.surveyapp.models.SurveyResponse
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_survey_screen.*
@@ -53,7 +53,15 @@ class SurveyScreenActivity : AppCompatActivity() {
     }
 
     private inner class JavaScriptInterface {
-
+        @JavascriptInterface
+        fun sendData(fromWeb: String) {
+            val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(domainSurvey)
+            myRef.child(surveyId).push().setValue(SurveyResponse(System.currentTimeMillis().toString(),fromWeb))
+        }
+        @JavascriptInterface
+        fun back() {
+            finish()
+        }
     }
 
 }

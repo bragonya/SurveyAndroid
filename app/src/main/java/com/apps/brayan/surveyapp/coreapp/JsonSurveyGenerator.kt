@@ -1,4 +1,4 @@
-package com.apps.brayan.surveyapp.coreApp
+package com.apps.brayan.surveyapp.coreapp
 
 class JsonSurveyGenerator{
     companion object {

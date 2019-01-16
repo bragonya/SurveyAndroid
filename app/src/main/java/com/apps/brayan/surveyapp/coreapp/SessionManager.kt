@@ -1,4 +1,4 @@
-package com.apps.brayan.surveyapp.coreApp
+package com.apps.brayan.surveyapp.coreapp
 
 import android.content.Context
 import android.preference.PreferenceManager

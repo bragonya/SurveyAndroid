@@ -3,10 +3,10 @@ package com.apps.brayan.surveyapp
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.os.Handler
-import com.apps.brayan.surveyapp.coreApp.Cache
-import com.apps.brayan.surveyapp.coreApp.NetworkManager
-import com.apps.brayan.surveyapp.coreApp.SessionManager
-import com.apps.brayan.surveyapp.coreApp.application.MasterApp
+import com.apps.brayan.surveyapp.coreapp.Cache
+import com.apps.brayan.surveyapp.coreapp.NetworkManager
+import com.apps.brayan.surveyapp.coreapp.SessionManager
+import com.apps.brayan.surveyapp.coreapp.application.MasterApp
 import com.apps.brayan.surveyapp.login.LoginCallback
 import com.apps.brayan.surveyapp.models.OrgDetail
 import com.apps.brayan.surveyapp.models.Survey

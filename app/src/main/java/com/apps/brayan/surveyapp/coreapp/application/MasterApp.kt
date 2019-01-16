@@ -1,9 +1,9 @@
-package com.apps.brayan.surveyapp.coreApp.application
+package com.apps.brayan.surveyapp.coreapp.application
 
 import android.app.Application
-import com.apps.brayan.surveyapp.coreApp.application.di.AppComponent
-import com.apps.brayan.surveyapp.coreApp.application.di.AppModule
-import com.apps.brayan.surveyapp.coreApp.application.di.DaggerAppComponent
+import com.apps.brayan.surveyapp.coreapp.application.di.AppComponent
+import com.apps.brayan.surveyapp.coreapp.application.di.AppModule
+import com.apps.brayan.surveyapp.coreapp.application.di.DaggerAppComponent
 
 class MasterApp: Application() {
     val component: AppComponent by lazy {

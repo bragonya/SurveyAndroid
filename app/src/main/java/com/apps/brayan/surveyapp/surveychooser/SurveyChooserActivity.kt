@@ -11,10 +11,10 @@ import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.SurveyScreenActivity
-import com.apps.brayan.surveyapp.coreApp.SurveyConstants
-import com.apps.brayan.surveyapp.coreApp.application.MasterApp
-import com.apps.brayan.surveyapp.coreApp.fallback.FallbackCase
-import com.apps.brayan.surveyapp.coreApp.fallback.FallbackManager
+import com.apps.brayan.surveyapp.coreapp.SurveyConstants
+import com.apps.brayan.surveyapp.coreapp.application.MasterApp
+import com.apps.brayan.surveyapp.coreapp.fallback.FallbackCase
+import com.apps.brayan.surveyapp.coreapp.fallback.FallbackManager
 import com.apps.brayan.surveyapp.models.Survey
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_survey_chooser.*

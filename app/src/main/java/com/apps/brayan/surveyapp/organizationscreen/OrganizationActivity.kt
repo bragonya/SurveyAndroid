@@ -14,15 +14,15 @@ import android.view.MenuItem
 import android.view.View
 import com.apps.brayan.surveyapp.login.LoginActivity
 import com.apps.brayan.surveyapp.R
-import com.apps.brayan.surveyapp.coreApp.SessionManager
-import com.apps.brayan.surveyapp.coreApp.SurveyConstants
+import com.apps.brayan.surveyapp.coreapp.SessionManager
+import com.apps.brayan.surveyapp.coreapp.SurveyConstants
 import com.apps.brayan.surveyapp.surveychooser.SurveyChooserActivity
 import kotlinx.android.synthetic.main.activity_organization_screen.*
 import kotlinx.android.synthetic.main.app_bar_organization_screen.*
 import kotlinx.android.synthetic.main.content_organization_screen.*
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
-import com.apps.brayan.surveyapp.coreApp.application.MasterApp
+import com.apps.brayan.surveyapp.coreapp.application.MasterApp
 import javax.inject.Inject
 
 

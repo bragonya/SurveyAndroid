@@ -1,4 +1,4 @@
-package com.apps.brayan.surveyapp.coreApp.fallback
+package com.apps.brayan.surveyapp.coreapp.fallback
 
 import android.support.annotation.StringRes
 

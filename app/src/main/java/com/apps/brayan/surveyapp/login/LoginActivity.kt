@@ -18,7 +18,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import com.apps.brayan.surveyapp.R
-import com.apps.brayan.surveyapp.coreApp.application.MasterApp
+import com.apps.brayan.surveyapp.coreapp.application.MasterApp
 import com.apps.brayan.surveyapp.organizationscreen.OrganizationActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
