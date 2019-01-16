@@ -1,14 +1,13 @@
 package com.apps.brayan.surveyapp
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.webkit.WebView
-import android.widget.Toast
-import android.webkit.WebViewClient
-import android.webkit.WebChromeClient
+import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.webkit.JavascriptInterface
-import com.apps.brayan.surveyapp.coreApp.JsonSurveyGenerator
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.Toast
 import com.apps.brayan.surveyapp.coreApp.SurveyConstants
 import com.apps.brayan.surveyapp.coreApp.SurveyManagerFile
 import com.apps.brayan.surveyapp.models.SurveyResponse
@@ -54,16 +53,7 @@ class SurveyScreenActivity : AppCompatActivity() {
     }
 
     private inner class JavaScriptInterface {
-        @JavascriptInterface
-        fun sendData(fromWeb: String) {
-            val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(domainSurvey)
-            myRef.child(surveyId).push().setValue(SurveyResponse(System.currentTimeMillis().toString(),fromWeb))
-        }
 
-        @JavascriptInterface
-        fun back() {
-            finish()
-        }
     }
 
 }

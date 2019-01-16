@@ -8,7 +8,7 @@ import com.google.gson.Gson
 
 class SessionManager {
     companion object {
-        val KEY_SESSION = "KEY_SESSION"
+        const val KEY_SESSION = "KEY_SESSION"
         var userInstance:User? = null
 
         fun getActualUser(context: Context):User?{

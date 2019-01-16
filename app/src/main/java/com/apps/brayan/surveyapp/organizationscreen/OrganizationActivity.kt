@@ -51,7 +51,7 @@ class OrganizationActivity : AppCompatActivity(), NavigationView.OnNavigationIte
 
     fun setupRecyclerView(){
         recyclerOrganization.layoutManager = LinearLayoutManager(this)
-        var arrayOrgs:ArrayList<String> = ArrayList()
+        val arrayOrgs:ArrayList<String> = ArrayList()
         SessionManager.getActualUser(this)?.orgaizaciones?.keys?.toCollection(arrayOrgs)
         adapter = OrgAdapter(ArrayList(),this,this)
         recyclerOrganization.adapter = adapter

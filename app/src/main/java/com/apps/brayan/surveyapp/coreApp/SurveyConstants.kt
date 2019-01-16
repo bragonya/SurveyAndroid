@@ -7,7 +7,7 @@ class SurveyConstants {
         var SURVEY_DOMAIN:String = "file:///android_asset/surveycore"
         var SURVEY_BODY_FILE:String = "actualSurvey.js"
         var SURVEY_MAIN:String = "/main.html"
-        val KEY_ORG = "KEY_ORG"
-        val IMG_ORG = "IMG_ORG"
+        const val KEY_ORG = "KEY_ORG"
+        const val IMG_ORG = "IMG_ORG"
     }
 }

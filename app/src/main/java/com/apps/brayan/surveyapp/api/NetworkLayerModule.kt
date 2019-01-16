@@ -6,7 +6,7 @@ import com.apps.brayan.surveyapp.firebase.database.FirebaseModule
 import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
 import dagger.Provides
-@Module(includes = arrayOf(FirebaseModule::class))
+@Module(includes = [FirebaseModule::class])
 class NetworkLayerModule{
     @Provides
     fun provideRepository(firebaseDatabase: FirebaseDatabase,context:MasterApp): SurveyRepository{

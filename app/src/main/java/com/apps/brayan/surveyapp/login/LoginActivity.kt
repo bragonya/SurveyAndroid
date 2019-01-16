@@ -5,32 +5,21 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.TextView
-
-import android.content.Intent
 import android.os.Handler
 import android.support.annotation.LayoutRes
 import android.support.constraint.ConstraintSet
 import android.support.transition.TransitionManager
+import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import android.widget.Toast
 import com.apps.brayan.surveyapp.R
-import com.apps.brayan.surveyapp.coreApp.NetworkManager
-import com.apps.brayan.surveyapp.coreApp.SessionManager
 import com.apps.brayan.surveyapp.coreApp.application.MasterApp
-import com.apps.brayan.surveyapp.models.User
 import com.apps.brayan.surveyapp.organizationscreen.OrganizationActivity
-import com.apps.brayan.surveyapp.surveychooser.SCViewModel
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 

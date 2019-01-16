@@ -7,7 +7,7 @@ import dagger.Subcomponent
 import javax.inject.Singleton
 
 @Singleton
-@Subcomponent(modules = arrayOf(ViewModelModule::class))
+@Subcomponent(modules = [ViewModelModule::class])
 interface ViewModelComponent {
     fun inject(activity: SurveyChooserActivity)
     fun inject(activity: OrganizationActivity)
