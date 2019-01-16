@@ -17,13 +17,15 @@ import kotlinx.android.synthetic.main.activity_survey_screen.*
 
 class SurveyScreenActivity : AppCompatActivity() {
     lateinit var surveyId:String
-    val domainSurvey = "https://bdsurvey-4d97c.firebaseio.com/proyectos/organizacionheifer/respuestas"
+    lateinit var organizationId:String
+    val domainSurvey = "https://bdsurvey-4d97c.firebaseio.com/proyectos/{organizationId}/respuestas"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_PROGRESS)
         setContentView(R.layout.activity_survey_screen)
         val surveyContent:String = intent.getStringExtra(SurveyConstants.SURVEY_BODY_INTENT)
         surveyId = intent.getStringExtra(SurveyConstants.SURVEY_ID_INTENT)
+        organizationId = intent.getStringExtra(SurveyConstants.KEY_ORG)
         SurveyManagerFile.setupSurveyToFile(surveyContent,this)
         SurveyManagerFile.readFile(this)
         setupWebView(webViewSurvey)
@@ -55,7 +57,7 @@ class SurveyScreenActivity : AppCompatActivity() {
     private inner class JavaScriptInterface {
         @JavascriptInterface
         fun sendData(fromWeb: String) {
-            val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(domainSurvey)
+            val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(domainSurvey.replace("{organizationId}",organizationId))
             myRef.child(surveyId).push().setValue(SurveyResponse(System.currentTimeMillis().toString(),fromWeb))
         }
         @JavascriptInterface

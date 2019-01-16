@@ -27,13 +27,14 @@ class SurveyChooserActivity : AppCompatActivity(), SCClick {
     lateinit var model:SCViewModel
     lateinit var adapter: SCAdapter
     lateinit var fallbackManager: FallbackManager
+    lateinit var organizationName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_chooser)
         component.inject(this)
         collapsing_toolbar.post { collapsing_toolbar.requestLayout() }
         fallbackManager = FallbackManager()
-        val organizationName:String = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
+        organizationName = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
         setupHeader(intent.getStringExtra(SurveyConstants.IMG_ORG))
         model = ViewModelProviders.of(this,viewModelFactory).get(SCViewModel::class.java)
         setupRecyclerView()
@@ -41,7 +42,7 @@ class SurveyChooserActivity : AppCompatActivity(), SCClick {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        fetchData(intent.getStringExtra(SurveyConstants.KEY_ORG) ?: "")
+        fetchData(organizationName)
     }
 
     fun setupHeader(img:String?){
@@ -95,6 +96,7 @@ class SurveyChooserActivity : AppCompatActivity(), SCClick {
     override fun onClick(item: Survey) {
         val intent = Intent(this,SurveyScreenActivity::class.java)
         intent.putExtra(SurveyConstants.SURVEY_BODY_INTENT,item.body)
+        intent.putExtra(SurveyConstants.KEY_ORG,organizationName)
         intent.putExtra(SurveyConstants.SURVEY_ID_INTENT,item.id)
         startActivity(intent)
     }
