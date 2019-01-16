@@ -65,11 +65,11 @@ class SurveyRepository(var firebaseDatabase: FirebaseDatabase, var context:Maste
                             if (detail != null) {
                                 detail.id = organizationName
                                 Cache.saveDetailCacheByOrganization(context, detail, organizationName)
-                                value.setValue(detail)
+                                value.value = detail
                             }
                         }
                         if (detail == null) {
-                            value.setValue(createOrgDetailByString(organizationName))
+                            value.value = createOrgDetailByString(organizationName)
                         }
                     }
 

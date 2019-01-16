@@ -27,7 +27,7 @@ public class SurveyChooserActivityTest {
     private SurveyChooserActivity activity;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         ActivityController controller = Robolectric.buildActivity(SurveyChooserActivity.class);
         activity = (SurveyChooserActivity) controller
                 .get();

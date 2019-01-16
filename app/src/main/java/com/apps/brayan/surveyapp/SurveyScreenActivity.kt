@@ -33,20 +33,20 @@ class SurveyScreenActivity : AppCompatActivity() {
 
     fun setupWebView(webview: WebView){
 
-        webview.getSettings().setJavaScriptEnabled(true)
+        webview.settings.javaScriptEnabled = true
 
         val activity = this
         with(webview) {
-            setWebChromeClient(object : WebChromeClient() {
-            override fun onProgressChanged(view: WebView, progress: Int) {
-                activity.setProgress(progress * 1000)
+            webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(view: WebView, progress: Int) {
+                    activity.setProgress(progress * 1000)
+                }
             }
-        })
-            setWebViewClient(object : WebViewClient() {
-            override fun onReceivedError(view: WebView, errorCode: Int, description: String, failingUrl: String) {
-                Toast.makeText(activity, "Oh no! $description", Toast.LENGTH_SHORT).show()
+            webViewClient = object : WebViewClient() {
+                override fun onReceivedError(view: WebView, errorCode: Int, description: String, failingUrl: String) {
+                    Toast.makeText(activity, "Oh no! $description", Toast.LENGTH_SHORT).show()
+                }
             }
-        })
             addJavascriptInterface(JavaScriptInterface(),"JSInterface")
 
             loadUrl(SurveyConstants.SURVEY_DOMAIN+SurveyConstants.SURVEY_MAIN)
