@@ -10,15 +10,13 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.apps.brayan.surveyapp.LoginActivity
+import com.apps.brayan.surveyapp.login.LoginActivity
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.coreApp.SessionManager
 import com.apps.brayan.surveyapp.coreApp.SurveyConstants
-import com.apps.brayan.surveyapp.surveychooser.SurveyChooser
+import com.apps.brayan.surveyapp.surveychooser.SurveyChooserActivity
 import kotlinx.android.synthetic.main.activity_organization_screen.*
 import kotlinx.android.synthetic.main.app_bar_organization_screen.*
 import kotlinx.android.synthetic.main.content_organization_screen.*
@@ -28,7 +26,7 @@ import com.apps.brayan.surveyapp.coreApp.application.MasterApp
 import javax.inject.Inject
 
 
-class OrganizationScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OrgClick {
+class OrganizationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OrgClick {
     val component by lazy { (application as MasterApp).component.getViewModelComponent() }
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -99,7 +97,7 @@ class OrganizationScreen : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     override fun onClick(orgName: String, imgView:View, img:String?) {
-        val intent = Intent(this,SurveyChooser::class.java)
+        val intent = Intent(this,SurveyChooserActivity::class.java)
         intent.putExtra(SurveyConstants.KEY_ORG,orgName)
         intent.putExtra(SurveyConstants.IMG_ORG,img)
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imgView, "imgTransition")

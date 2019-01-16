@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_survey_screen.*
 
 
-class SurveyScreen : AppCompatActivity() {
+class SurveyScreenActivity : AppCompatActivity() {
     lateinit var surveyId:String
     val domainSurvey = "https://bdsurvey-4d97c.firebaseio.com/proyectos/organizacionheifer/respuestas"
     override fun onCreate(savedInstanceState: Bundle?) {

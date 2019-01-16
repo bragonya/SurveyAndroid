@@ -6,6 +6,7 @@ import android.content.Context
 import com.apps.brayan.surveyapp.SurveyRepository
 import com.apps.brayan.surveyapp.api.NetworkLayerModule
 import com.apps.brayan.surveyapp.firebase.database.FirebaseModule
+import com.apps.brayan.surveyapp.login.LoginViewModel
 import com.apps.brayan.surveyapp.organizationscreen.OrgViewModel
 import com.apps.brayan.surveyapp.surveychooser.SCViewModel
 import com.apps.brayan.surveyapp.viewmodel.SurveyViewModelFactory
@@ -30,4 +31,9 @@ abstract class ViewModelModule{
     @IntoMap
     @ViewModelKey(OrgViewModel::class)
     internal abstract fun orgViewModel(orgViewModel: OrgViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    internal abstract fun loginViewModel(loginViewModel: LoginViewModel): ViewModel
 }

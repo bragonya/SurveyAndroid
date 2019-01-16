@@ -1,12 +1,9 @@
 package com.apps.brayan.surveyapp.surveychooser;
 
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.apps.brayan.surveyapp.BuildConfig;
 import com.apps.brayan.surveyapp.R;
-import com.apps.brayan.surveyapp.coreApp.SurveyConstants;
-import com.apps.brayan.surveyapp.models.Survey;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,21 +16,20 @@ import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
 
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
-public class SurveyChooserTest {
+public class SurveyChooserActivityTest {
 
-    private SurveyChooser activity;
+    private SurveyChooserActivity activity;
 
     @Before
     public void setUp() throws Exception {
-        ActivityController controller = Robolectric.buildActivity(SurveyChooser.class);
-        activity = (SurveyChooser) controller
+        ActivityController controller = Robolectric.buildActivity(SurveyChooserActivity.class);
+        activity = (SurveyChooserActivity) controller
                 .get();
         doNothing().when(activity.getModel()).fetchSurveysByOrganization("",activity);
         controller.create().resume();
