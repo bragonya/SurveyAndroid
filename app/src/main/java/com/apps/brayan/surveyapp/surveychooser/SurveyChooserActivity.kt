@@ -1,6 +1,7 @@
 package com.apps.brayan.surveyapp.surveychooser
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Build
@@ -9,34 +10,39 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.apps.brayan.surveyapp.R
-import com.apps.brayan.surveyapp.SurveyScreen
-import com.apps.brayan.surveyapp.coreApp.SurveyConstants
-import com.apps.brayan.surveyapp.coreApp.fallback.FallbackCase
-import com.apps.brayan.surveyapp.coreApp.fallback.FallbackManager
+import com.apps.brayan.surveyapp.SurveyScreenActivity
+import com.apps.brayan.surveyapp.coreapp.SurveyConstants
+import com.apps.brayan.surveyapp.coreapp.application.MasterApp
+import com.apps.brayan.surveyapp.coreapp.fallback.FallbackCase
+import com.apps.brayan.surveyapp.coreapp.fallback.FallbackManager
 import com.apps.brayan.surveyapp.models.Survey
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_survey_chooser.*
+import javax.inject.Inject
 
-class SurveyChooser : AppCompatActivity(), SCClick {
-
+class SurveyChooserActivity : AppCompatActivity(), SCClick {
+    val component by lazy { (application as MasterApp).component.getViewModelComponent() }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var model:SCViewModel
     lateinit var adapter: SCAdapter
     lateinit var fallbackManager: FallbackManager
-
+    lateinit var organizationName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_chooser)
+        component.inject(this)
         collapsing_toolbar.post { collapsing_toolbar.requestLayout() }
         fallbackManager = FallbackManager()
-        val organizationName:String = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
+        organizationName = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
         setupHeader(intent.getStringExtra(SurveyConstants.IMG_ORG))
-        model = ViewModelProviders.of(this).get(SCViewModel::class.java)
+        model = ViewModelProviders.of(this,viewModelFactory).get(SCViewModel::class.java)
         setupRecyclerView()
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        fetchData(intent.getStringExtra(SurveyConstants.KEY_ORG) ?: "")
+        fetchData(organizationName)
     }
 
     fun setupHeader(img:String?){
@@ -88,8 +94,9 @@ class SurveyChooser : AppCompatActivity(), SCClick {
     }
 
     override fun onClick(item: Survey) {
-        val intent = Intent(this,SurveyScreen::class.java)
+        val intent = Intent(this,SurveyScreenActivity::class.java)
         intent.putExtra(SurveyConstants.SURVEY_BODY_INTENT,item.body)
+        intent.putExtra(SurveyConstants.KEY_ORG,organizationName)
         intent.putExtra(SurveyConstants.SURVEY_ID_INTENT,item.id)
         startActivity(intent)
     }

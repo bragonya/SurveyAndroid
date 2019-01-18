@@ -1,4 +1,4 @@
-package com.apps.brayan.surveyapp.coreApp
+package com.apps.brayan.surveyapp.coreapp
 
 import android.content.Context
 import android.preference.PreferenceManager
@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken
 class Cache {
 
     companion object {
-        val prefixDetaiil = "detail_"
+        const val prefixDetaiil = "detail_"
         fun generateSurveysCacheByOrganization(context: Context, list:ArrayList<Survey>, keyOrg:String){
             val gson = Gson()
             val surveyString = gson.toJson(list)

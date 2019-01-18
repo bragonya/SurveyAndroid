@@ -1,8 +1,7 @@
-package com.apps.brayan.surveyapp.coreApp.fallback;
+package com.apps.brayan.surveyapp.coreapp.fallback;
 
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.ViewGroup;
 import android.widget.TextView;
 

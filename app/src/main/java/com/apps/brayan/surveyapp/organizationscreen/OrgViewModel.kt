@@ -6,12 +6,11 @@ import android.arch.lifecycle.ViewModel
 import android.content.Context
 import com.apps.brayan.surveyapp.SurveyRepository
 import com.apps.brayan.surveyapp.models.OrgDetail
+import javax.inject.Inject
 
-class OrgViewModel: ViewModel() {
-    private var repository: SurveyRepository
+class OrgViewModel @Inject constructor(var repository: SurveyRepository): ViewModel() {
     private var detail: MutableLiveData<OrgDetail>
     init {
-        repository = SurveyRepository()
         detail = MutableLiveData()
     }
 

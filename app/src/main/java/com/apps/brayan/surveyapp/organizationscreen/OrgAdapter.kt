@@ -16,11 +16,6 @@ class OrgAdapter(val items : ArrayList<OrgDetail>, val context: Context, var lis
         return items.size
     }
 
-    fun replaceItems(list: ArrayList<OrgDetail>){
-        items.clear()
-        items.addAll(list)
-    }
-
     fun addLast(item:OrgDetail){
         items.add(item)
     }
