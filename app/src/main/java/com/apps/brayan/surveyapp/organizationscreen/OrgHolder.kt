@@ -9,7 +9,7 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.org_holder.view.*
 
-class OrgHolder (itemView: View?, var listener: OrgClick) : RecyclerView.ViewHolder(itemView) {
+class OrgHolder (itemView: View, var listener: OrgClick) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(position: Int, item: OrgDetail) {
         if(item.logo!=null) {
