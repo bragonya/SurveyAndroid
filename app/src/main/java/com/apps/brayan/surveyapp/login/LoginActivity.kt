@@ -20,6 +20,7 @@ import android.widget.Toast
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.coreapp.application.MasterApp
 import com.apps.brayan.surveyapp.organizationscreen.OrganizationActivity
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
@@ -27,14 +28,15 @@ import javax.inject.Inject
  * A login screen that offers login via email/password.
  */
 class LoginActivity : AppCompatActivity() {
-    val component by lazy { (application as MasterApp).component.getViewModelComponent() }
+    //val component by lazy { (application as MasterApp).component.getViewModelComponent() }
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var model:LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_start_scene)
-        component.inject(this)
+        //component.inject(this)
+        AndroidInjection.inject(this)
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
                 model.attemptLogin(email.text.toString(),password.text.toString(), AttempToLoginImpl())

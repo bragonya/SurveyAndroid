@@ -23,11 +23,12 @@ import kotlinx.android.synthetic.main.content_organization_screen.*
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
 import com.apps.brayan.surveyapp.coreapp.application.MasterApp
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 
 class OrganizationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OrgClick {
-    val component by lazy { (application as MasterApp).component.getViewModelComponent() }
+    //val component by lazy { (application as MasterApp).component.getViewModelComponent() }
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var adapter: OrgAdapter
@@ -37,7 +38,7 @@ class OrganizationActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_organization_screen)
         setSupportActionBar(toolbar)
-        component.inject(this)
+        AndroidInjection.inject(this)
         model = ViewModelProviders.of(this,viewModelFactory).get(OrgViewModel::class.java)
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

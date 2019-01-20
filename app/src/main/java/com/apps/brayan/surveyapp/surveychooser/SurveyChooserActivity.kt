@@ -17,11 +17,12 @@ import com.apps.brayan.surveyapp.coreapp.fallback.FallbackCase
 import com.apps.brayan.surveyapp.coreapp.fallback.FallbackManager
 import com.apps.brayan.surveyapp.models.Survey
 import com.squareup.picasso.Picasso
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_survey_chooser.*
 import javax.inject.Inject
 
 class SurveyChooserActivity : AppCompatActivity(), SCClick {
-    val component by lazy { (application as MasterApp).component.getViewModelComponent() }
+    //val component by lazy { (application as MasterApp).component.getViewModelComponent() }
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var model:SCViewModel
@@ -31,7 +32,7 @@ class SurveyChooserActivity : AppCompatActivity(), SCClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_chooser)
-        component.inject(this)
+        AndroidInjection.inject(this)
         collapsing_toolbar.post { collapsing_toolbar.requestLayout() }
         fallbackManager = FallbackManager()
         organizationName = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
