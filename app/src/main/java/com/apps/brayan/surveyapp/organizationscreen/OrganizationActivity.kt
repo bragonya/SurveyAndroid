@@ -22,13 +22,11 @@ import kotlinx.android.synthetic.main.app_bar_organization_screen.*
 import kotlinx.android.synthetic.main.content_organization_screen.*
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
-import com.apps.brayan.surveyapp.coreapp.application.MasterApp
-import com.apps.brayan.surveyapp.coreapp.application.di.InjectedClass
-import dagger.android.AndroidInjection
+import com.apps.brayan.surveyapp.coreapp.application.di.InjectedActivity
 import javax.inject.Inject
 
 
-class OrganizationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OrgClick, InjectedClass {
+class OrganizationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OrgClick, InjectedActivity {
     //val component by lazy { (application as MasterApp).component.getViewModelComponent() }
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

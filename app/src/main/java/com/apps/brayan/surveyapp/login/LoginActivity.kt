@@ -18,17 +18,15 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import com.apps.brayan.surveyapp.R
-import com.apps.brayan.surveyapp.coreapp.application.MasterApp
-import com.apps.brayan.surveyapp.coreapp.application.di.InjectedClass
+import com.apps.brayan.surveyapp.coreapp.application.di.InjectedActivity
 import com.apps.brayan.surveyapp.organizationscreen.OrganizationActivity
-import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 /**
  * A login screen that offers login via email/password.
  */
-class LoginActivity : AppCompatActivity(), InjectedClass{
+class LoginActivity : AppCompatActivity(), InjectedActivity{
     //val component by lazy { (application as MasterApp).component.getViewModelComponent() }
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

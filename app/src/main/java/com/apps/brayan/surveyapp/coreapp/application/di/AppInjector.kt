@@ -5,8 +5,6 @@ import android.app.Application
 import android.os.Bundle
 import com.apps.brayan.surveyapp.coreapp.application.MasterApp
 import dagger.android.AndroidInjection
-import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
 
 object AppInjector {
     fun init(app: MasterApp) {
@@ -44,7 +42,7 @@ object AppInjector {
     }
 
     private fun handleActivity(activity: Activity) {
-        if (activity is InjectedClass) {
+        if (activity is InjectedActivity) {
             AndroidInjection.inject(activity)
         }
     }
