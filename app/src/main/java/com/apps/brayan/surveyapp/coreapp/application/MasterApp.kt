@@ -3,6 +3,7 @@ package com.apps.brayan.surveyapp.coreapp.application
 import android.app.Activity
 import android.app.Application
 import com.apps.brayan.surveyapp.coreapp.application.di.AppComponent
+import com.apps.brayan.surveyapp.coreapp.application.di.AppInjector
 import com.apps.brayan.surveyapp.coreapp.application.di.AppModule
 import com.apps.brayan.surveyapp.coreapp.application.di.DaggerAppComponent
 import dagger.android.AndroidInjector
@@ -15,16 +16,10 @@ class MasterApp: Application(), HasActivityInjector {
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
     override fun activityInjector() = dispatchingAndroidInjector
 
-    val component: AppComponent by lazy {
-        DaggerAppComponent
-                .builder()
-                .appModule(AppModule(this))
-                .build()
-    }
 
     override fun onCreate() {
         super.onCreate()
-        component.inject(this)
+        AppInjector.init(this)
     }
 
 
