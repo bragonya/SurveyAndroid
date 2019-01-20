@@ -1,5 +1,6 @@
 package com.apps.brayan.surveyapp.coreapp.application.di
 
+import com.apps.brayan.surveyapp.coreapp.fallback.FallbackModule
 import com.apps.brayan.surveyapp.login.LoginActivity
 import com.apps.brayan.surveyapp.organizationscreen.OrganizationActivity
 import com.apps.brayan.surveyapp.surveychooser.SurveyChooserActivity
@@ -10,7 +11,7 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class BindingActivitiesModule {
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = [FallbackModule::class])
     internal abstract fun bindSurveyChooserActivity(): SurveyChooserActivity
 
     @ContributesAndroidInjector()

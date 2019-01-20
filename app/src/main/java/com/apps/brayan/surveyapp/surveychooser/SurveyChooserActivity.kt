@@ -26,13 +26,13 @@ class SurveyChooserActivity : AppCompatActivity(), SCClick, InjectedActivity {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var model:SCViewModel
     lateinit var adapter: SCAdapter
+    @Inject
     lateinit var fallbackManager: FallbackManager
     lateinit var organizationName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_chooser)
         collapsing_toolbar.post { collapsing_toolbar.requestLayout() }
-        fallbackManager = FallbackManager()
         organizationName = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
         setupHeader(intent.getStringExtra(SurveyConstants.IMG_ORG))
         model = ViewModelProviders.of(this,viewModelFactory).get(SCViewModel::class.java)
