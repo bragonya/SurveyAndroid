@@ -12,7 +12,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.SurveyScreenActivity
 import com.apps.brayan.surveyapp.coreapp.SurveyConstants
-import com.apps.brayan.surveyapp.coreapp.application.MasterApp
+import com.apps.brayan.surveyapp.coreapp.application.di.InjectedActivity
 import com.apps.brayan.surveyapp.coreapp.fallback.FallbackCase
 import com.apps.brayan.surveyapp.coreapp.fallback.FallbackManager
 import com.apps.brayan.surveyapp.models.Survey
@@ -20,20 +20,19 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_survey_chooser.*
 import javax.inject.Inject
 
-class SurveyChooserActivity : AppCompatActivity(), SCClick {
-    val component by lazy { (application as MasterApp).component.getViewModelComponent() }
+class SurveyChooserActivity : AppCompatActivity(), SCClick, InjectedActivity {
+    //val component by lazy { (application as MasterApp).component.getViewModelComponent() }
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var model:SCViewModel
     lateinit var adapter: SCAdapter
+    @Inject
     lateinit var fallbackManager: FallbackManager
     lateinit var organizationName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_chooser)
-        component.inject(this)
         collapsing_toolbar.post { collapsing_toolbar.requestLayout() }
-        fallbackManager = FallbackManager()
         organizationName = intent.getStringExtra(SurveyConstants.KEY_ORG) ?: ""
         setupHeader(intent.getStringExtra(SurveyConstants.IMG_ORG))
         model = ViewModelProviders.of(this,viewModelFactory).get(SCViewModel::class.java)
