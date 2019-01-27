@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.util.Log
 import com.apps.brayan.surveyapp.SurveyRepository
+import com.apps.brayan.surveyapp.coreapp.SessionManager
 import com.apps.brayan.surveyapp.models.OrgDetail
 import javax.inject.Inject
 
