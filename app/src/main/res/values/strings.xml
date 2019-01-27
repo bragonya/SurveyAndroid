@@ -9,7 +9,7 @@
     <string name="organization_screen_title">Tus organizaciones</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">ID</string>
+    <string name="prompt_email">Correo Electrónico </string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Ingresa</string>
     <string name="action_sign_in_short">Sign in</string>
