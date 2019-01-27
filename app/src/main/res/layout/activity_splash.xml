@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".SplashActivity">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:layout_width="204dp"
         android:layout_height="209dp"
         android:layout_centerInParent="true"
         android:id="@+id/logo"
-        android:src="@drawable/ic_format_list_bulleted_black_24dp" />
+        app:srcCompat="@drawable/ic_blacklogo" />
 
     <TextView
         android:layout_width="wrap_content"

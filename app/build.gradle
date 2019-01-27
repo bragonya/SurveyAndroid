@@ -8,6 +8,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 27
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.apps.brayan.surveyapp"
         minSdkVersion 15
         targetSdkVersion 27
