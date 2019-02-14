@@ -20,5 +20,6 @@
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">@dimen/large_normal_text</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 </resources>
