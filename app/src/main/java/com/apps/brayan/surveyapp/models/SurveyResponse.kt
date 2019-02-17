@@ -5,15 +5,13 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 
 @IgnoreExtraProperties
-class SurveyResponse {
+class SurveyResponse(date: String, body: String, var userHash: String = "Anonymous") {
 
-    var date: String?=null
+    var date: String?= date
     var body: HashMap<*,*>?=null
 
-    constructor(date: String, body: String) {
-
+    init {
         this.body = ObjectMapper().readValue(body, HashMap::class.java)
-        this.date = date
     }
 
 }

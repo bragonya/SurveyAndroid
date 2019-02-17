@@ -8,6 +8,7 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import com.apps.brayan.surveyapp.R
 import com.apps.brayan.surveyapp.SurveyScreenActivity
@@ -51,7 +52,7 @@ class SurveyChooserActivity : AppCompatActivity(), SCClick, InjectedActivity {
     }
 
     fun setupRecyclerView(){
-        recyclerSurveyChooser.layoutManager = LinearLayoutManager(this)
+        recyclerSurveyChooser.layoutManager = GridLayoutManager(this,2)
         adapter =  SCAdapter(ArrayList(), this,this)
         recyclerSurveyChooser.adapter = adapter
     }

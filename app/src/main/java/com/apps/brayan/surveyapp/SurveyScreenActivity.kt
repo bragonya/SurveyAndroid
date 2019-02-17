@@ -8,6 +8,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import com.apps.brayan.surveyapp.coreapp.SessionManager
 import com.apps.brayan.surveyapp.coreapp.SurveyConstants
 import com.apps.brayan.surveyapp.coreapp.SurveyManagerFile
 import com.apps.brayan.surveyapp.models.SurveyResponse
@@ -58,7 +59,11 @@ class SurveyScreenActivity : AppCompatActivity() {
         @JavascriptInterface
         fun sendData(fromWeb: String) {
             val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(domainSurvey.replace("{organizationId}",organizationId))
-            myRef.child(surveyId).push().setValue(SurveyResponse(System.currentTimeMillis().toString(),fromWeb))
+            val logguedUser = SessionManager.getActualUser(applicationContext)
+            if(logguedUser!=null)
+                myRef.child(surveyId).push().setValue(SurveyResponse(System.currentTimeMillis().toString(),fromWeb,logguedUser.id))
+            else
+                myRef.child(surveyId).push().setValue(SurveyResponse(System.currentTimeMillis().toString(),fromWeb))
         }
         @JavascriptInterface
         fun back() {

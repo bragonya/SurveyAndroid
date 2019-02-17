@@ -21,8 +21,10 @@ import kotlinx.android.synthetic.main.activity_organization_screen.*
 import kotlinx.android.synthetic.main.app_bar_organization_screen.*
 import kotlinx.android.synthetic.main.content_organization_screen.*
 import android.support.v4.app.ActivityOptionsCompat
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import com.apps.brayan.surveyapp.coreapp.application.di.InjectedActivity
+import kotlinx.android.synthetic.main.nav_header_organization_screen.*
 import javax.inject.Inject
 
 
@@ -44,18 +46,22 @@ class OrganizationActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-
+        nav_view.post { configureUserName() }
         setupRecyclerView()
     }
 
     fun setupRecyclerView(){
-        recyclerOrganization.layoutManager = LinearLayoutManager(this)
+        recyclerOrganization.layoutManager = GridLayoutManager(this,2)
         val arrayOrgs:ArrayList<String> = ArrayList()
         SessionManager.getActualUser(this)?.orgaizaciones?.keys?.toCollection(arrayOrgs)
         adapter = OrgAdapter(ArrayList(),this,this)
         recyclerOrganization.adapter = adapter
         setupAdapter(arrayOrgs)
 
+    }
+
+    fun configureUserName(){
+        textNameNavigation.text = SessionManager.getActualUser(this)?.nombre ?: "Survey App"
     }
 
     fun setupAdapter(organizations: ArrayList<String>){

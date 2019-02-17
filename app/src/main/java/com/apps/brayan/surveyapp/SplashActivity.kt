@@ -17,11 +17,10 @@ import kotlinx.android.synthetic.main.activity_splash.*
 class SplashActivity : AppCompatActivity() {
 
     var usersDomain = "https://bdsurvey-4d97c.firebaseio.com/usuarios/"
-    var firebaseInstance:FirebaseDatabase?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        setupFirebaseDatabase()
         initialFlow()
     }
 
@@ -75,11 +74,5 @@ class SplashActivity : AppCompatActivity() {
         finish()
     }
 
-    fun setupFirebaseDatabase(){
 
-        if (firebaseInstance==null) {
-            firebaseInstance = FirebaseDatabase.getInstance()
-            firebaseInstance?.setPersistenceEnabled(true)
-        }
-    }
 }
