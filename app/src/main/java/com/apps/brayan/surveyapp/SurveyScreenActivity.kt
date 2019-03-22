@@ -134,7 +134,7 @@ class SurveyScreenActivity : AppCompatActivity() {
 
             addJavascriptInterface(JavaScriptInterface(),"JSInterface")
 
-            loadUrl("http://webymovil.com/pruebas/testsurvy.html")
+            loadUrl(SurveyConstants.SURVEY_DOMAIN+SurveyConstants.SURVEY_MAIN)
         }
     }
 
@@ -157,9 +157,9 @@ class SurveyScreenActivity : AppCompatActivity() {
         val storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
-                imageFileName, /* prefix */
-                ".jpg", /* suffix */
-                storageDir      /* directory */
+                imageFileName,
+                ".jpg",
+                storageDir
         )
     }
 
@@ -175,6 +175,7 @@ class SurveyScreenActivity : AppCompatActivity() {
             if (data == null || data.dataString == null) {
                 // If there is not data, then we may have taken a photo
                 if (mCameraPhotoPath != null) {
+
                     results = Uri.parse(mCameraPhotoPath);
                 }
             } else {
@@ -195,6 +196,7 @@ class SurveyScreenActivity : AppCompatActivity() {
     private inner class JavaScriptInterface {
         @JavascriptInterface
         fun sendData(fromWeb: String) {
+            Log.d("myFinalSurvey",fromWeb)
             val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(domainSurvey.replace("{organizationId}",organizationId))
             generateRequireData { userHash,longitude,latitude ->
                 myRef.child(surveyId).push().setValue(SurveyResponse(System.currentTimeMillis().toString(),fromWeb,userHash,longitude,latitude))
