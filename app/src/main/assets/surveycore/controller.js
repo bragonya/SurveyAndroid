@@ -1,4 +1,6 @@
 loadSurvey(json);
+
+var list_names = [];
 function loadSurvey(jsonObject){
     window.survey = new Survey.Model(jsonObject);
 
@@ -12,7 +14,7 @@ function loadSurvey(jsonObject){
             document
                     .querySelector('#surveyElement')
                     .innerHTML = "<h1>Tu encuesta ha sido procesada con exito</h1>";
-            JSInterface.sendData(JSON.stringify(removerTypeContent(result.data)));
+            JSInterface.sendData(JSON.stringify(removerTypeContent(result.data)),JSON.stringify(list_names));
         });
 
     $("#surveyElement").Survey({model: survey});
@@ -47,6 +49,7 @@ function removerTypeContent(cnt_JSON)
                         var arr = contenido_preg.name.split(".");
                         if(arr.length > 1){
                             contenido_preg.name = arr[0]+"_"+d.getTime()+"."+arr[1];
+                            list_names.push(contenido_preg.name);
                         }
                         delete contenido_preg["type"];
                         delete contenido_preg["content"];

@@ -19,21 +19,25 @@ import com.google.android.gms.location.LocationServices
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_survey_screen.*
 import android.content.Intent
+import android.database.Cursor
 import android.net.Uri
-import android.os.Build
 import android.os.Environment
 import android.util.Log
 import android.webkit.*
 import android.provider.MediaStore
-import android.support.v4.content.ContextCompat
+import android.provider.OpenableColumns
 import android.webkit.WebChromeClient
 import android.webkit.ValueCallback
 import android.webkit.WebView
+import com.apps.brayan.surveyapp.coreapp.images.ImageHandler
+import com.google.firebase.storage.FirebaseStorage
+import org.json.JSONArray
 import java.io.File
 import java.io.IOException
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class SurveyScreenActivity : AppCompatActivity() {
@@ -44,6 +48,7 @@ class SurveyScreenActivity : AppCompatActivity() {
     val domainSurvey = "https://bdsurvey-4d97c.firebaseio.com/proyectos/{organizationId}/respuestas"
     private val PETICION_PERMISO_LOCALIZACION: Int=1023
     private var pendingLambdaTransaction:((hashUser:String, latitude:Double, longitude:Double)->Unit?)?=null
+    private var temporalList: ArrayList<String> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_PROGRESS)
@@ -106,7 +111,7 @@ class SurveyScreenActivity : AppCompatActivity() {
                             takePictureIntent = null
                         }
                     }
-                    val contentSelectionIntent = Intent(Intent.ACTION_GET_CONTENT)
+                    val contentSelectionIntent = Intent(Intent.ACTION_OPEN_DOCUMENT)
                     contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE)
                     contentSelectionIntent.type = "image/*"
                     val intentArray: Array<Intent>
@@ -185,8 +190,10 @@ class SurveyScreenActivity : AppCompatActivity() {
                 }
             }
         }
-        if(results!=null)
+        if(results!=null) {
+            temporalList.add(results.toString())
             mFilePathCallback?.onReceiveValue(arrayOf(results))
+        }
         else
             mFilePathCallback?.onReceiveValue(null)
         mFilePathCallback = null;
@@ -195,11 +202,26 @@ class SurveyScreenActivity : AppCompatActivity() {
 
     private inner class JavaScriptInterface {
         @JavascriptInterface
-        fun sendData(fromWeb: String) {
+        fun sendData(fromWeb: String,jsonList: String) {
             Log.d("myFinalSurvey",fromWeb)
+            if (temporalList.size>0) {
+                var arrayNames: JSONArray? = null
+                try {
+                    arrayNames = JSONArray(jsonList)
+                    val temporalNames = ArrayList<String>()
+                    for (i in 0 until arrayNames.length()) {
+                        temporalNames.add(arrayNames.getString(i))
+                    }
+                    ImageHandler.addHashKeys(temporalNames,temporalList,applicationContext)
+                    temporalList.clear()
+                } catch (e: Exception) {
+                }
+
+            }
             val myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(domainSurvey.replace("{organizationId}",organizationId))
             generateRequireData { userHash,longitude,latitude ->
                 myRef.child(surveyId).push().setValue(SurveyResponse(System.currentTimeMillis().toString(),fromWeb,userHash,longitude,latitude))
+                ImageHandler.dispatchEvents(applicationContext)
             }
 
 
@@ -251,6 +273,9 @@ class SurveyScreenActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
 
     private fun getUserHash():String{
         val loggedUser = SessionManager.getActualUser(applicationContext)

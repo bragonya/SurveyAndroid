@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.apps.brayan.surveyapp.coreapp.NetworkManager
 import com.apps.brayan.surveyapp.coreapp.SessionManager
+import com.apps.brayan.surveyapp.coreapp.images.ImageHandler
 import com.apps.brayan.surveyapp.login.LoginActivity
 import com.apps.brayan.surveyapp.models.User
 import com.apps.brayan.surveyapp.organizationscreen.OrganizationActivity
@@ -24,14 +25,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         initialFlow()
-        getImageUrl()
-    }
-
-    fun getImageUrl(){
-        val storageRef = FirebaseStorage.getInstance("gs://bdsurvey-4d97c.appspot.com")
-        storageRef.reference.child("pentaho.PNG").downloadUrl.addOnSuccessListener {
-            Log.d("thisismyUri",it.toString())
-        }
+        ImageHandler.dispatchEvents(applicationContext)
     }
 
     fun initialFlow(){
