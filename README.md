@@ -1,6 +1,6 @@
 
-# Survey App 
-## ConstraintLayout - Dagger2 - ViewModel - Callback (Interface) - Firebase
+# Survey App - Examples of:
+## ConstraintLayout - Dagger2 - ViewModel - Callback (Interface) - Firebase - Robolectric
 
 - Constraint Layout example at res/activity_login.xml and res/activity_login_start_scene.xml
 - Constraint Layout animation at src/login/LoginActivity.kt (updateConstraint method)
@@ -9,3 +9,6 @@
 
 - Firebase example at src/SurveyRepository.kt
 - Communication of states between ViewModel and View throught interface src/login/AttempToLoginCallback at src/login/LoginActivity.kt
+
+- Robolectric example in /src/test/java/com/apps/brayan/surveyapp/surveychooser/SurveyChooserActivityTest.java
+
